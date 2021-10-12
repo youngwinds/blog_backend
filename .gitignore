@@ -1,2 +1,4 @@
 /.idea
-/src/main/resources/application.properties
+
+# ignore all properties
+*.properties
