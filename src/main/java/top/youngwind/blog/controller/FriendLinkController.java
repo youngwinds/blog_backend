@@ -37,15 +37,21 @@ public class FriendLinkController {
     }
 
     @Operation(summary = "删除")
-    @DeleteMapping("/delete")
-    public ResultVO<Integer> delete(@RequestParam("id") Integer id) {
+    @DeleteMapping("/{id}")
+    public ResultVO<Integer> delete(@PathVariable("id") Integer id) {
         friendLinkService.deleteById(id);
         return new ResultVO<>(ResultVOEnum.SUCCESS, id);
     }
 
     @Operation(summary = "修改")
-    @PostMapping("/modify")
+    @PutMapping("/modify")
     public ResultVO<FriendLink> delete(@RequestBody FriendLink friendLink) {
+        return new ResultVO<>(ResultVOEnum.SUCCESS, friendLinkService.save(friendLink));
+    }
+
+    @Operation(summary = "添加")
+    @PostMapping("/add")
+    public ResultVO<FriendLink> add(@RequestBody FriendLink friendLink) {
         return new ResultVO<>(ResultVOEnum.SUCCESS, friendLinkService.save(friendLink));
     }
 }

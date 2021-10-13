@@ -23,8 +23,10 @@ class ArticleServiceImplTest {
     private CategoryService categoryService;
 
     @Test
+    @Transactional
+    @Rollback(value = false)
     void add() {
-        Category category = categoryService.findById(1).orElse(null);
+        Category category = categoryService.findById(12).orElse(null);
 
 
         for (int i = 0; i < 10; i++) {
