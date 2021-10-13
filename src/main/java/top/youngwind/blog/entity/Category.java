@@ -1,6 +1,8 @@
 package top.youngwind.blog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +18,7 @@ import java.util.Set;
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@ApiModel("博客分类")
 public class Category {
     @Override
     public String toString() {
@@ -27,16 +30,21 @@ public class Category {
                 '}';
     }
 
+    @ApiModelProperty("Id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id; // Id
-    private String name; // 分类名称
+    private Integer id;
+
+    @ApiModelProperty("分类名称")
+    private String name;
 
     @OneToMany(mappedBy = "category", cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Set<Article> articleSet;
 
+    @ApiModelProperty("创建时间")
     @CreatedDate
     private Date createAt;
+    @ApiModelProperty("更新时间")
     @LastModifiedDate
     private Date updateAt;
 }

@@ -1,5 +1,7 @@
 package top.youngwind.blog.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,6 +15,7 @@ import java.util.Date;
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@ApiModel("友情链接")
 public class FriendLink {
     @Override
     public String toString() {
@@ -25,15 +28,20 @@ public class FriendLink {
                 '}';
     }
 
+    @ApiModelProperty("Id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String name; // 友情链接名称
-    private String url; // 友情链接地址
+    @ApiModelProperty("友情链接名称")
+    private String name;
+    @ApiModelProperty("友情链接地址")
+    private String url;
 
+    @ApiModelProperty("创建时间")
     @CreatedDate
     private Date createAt;
+    @ApiModelProperty("更新时间")
     @LastModifiedDate
     private Date updateAt;
 }

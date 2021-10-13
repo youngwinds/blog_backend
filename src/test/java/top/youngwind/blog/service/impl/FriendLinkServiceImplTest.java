@@ -15,10 +15,12 @@ class FriendLinkServiceImplTest {
 
     @Test
     void add() {
-        FriendLink friendLink = new FriendLink();
-        friendLink.setName("youngwind");
-        friendLink.setUrl("youngwind.top");
-        friendLinkService.add(friendLink);
+        for (int i = 0; i < 10; i++) {
+            FriendLink friendLink = new FriendLink();
+            friendLink.setName("youngwind"+i);
+            friendLink.setUrl("youngwind.top"+i);
+            friendLinkService.add(friendLink);
+        }
     }
 
     @Test

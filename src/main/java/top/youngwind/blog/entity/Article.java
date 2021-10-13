@@ -1,5 +1,7 @@
 package top.youngwind.blog.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,6 +15,7 @@ import java.util.Date;
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@ApiModel("博客文章")
 public class Article {
     @Override
     public String toString() {
@@ -29,23 +32,33 @@ public class Article {
                 '}';
     }
 
+    @ApiModelProperty("Id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id; // Id
 
-    private String title; // 标题
-    private String author; // 作者
-    private String introduce; // 介绍
-    private String content; // 内容
-    private String coverUrl; // 封面 url
-    private String coverInfo; // 封面 说明
+    @ApiModelProperty("标题")
+    private String title;
+    @ApiModelProperty("作者")
+    private String author;
+    @ApiModelProperty("介绍")
+    private String introduce;
+    @ApiModelProperty("内容")
+    private String content;
+    @ApiModelProperty("封面url")
+    private String coverUrl;
+    @ApiModelProperty("封面说明")
+    private String coverInfo;
 
+    @ApiModelProperty("分类Id")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ApiModelProperty("创建时间")
     @CreatedDate
     private Date createAt;
+    @ApiModelProperty("更新时间")
     @LastModifiedDate
     private Date updateAt;
 
