@@ -1,20 +1,20 @@
 package top.youngwind.blog.service;
 
-import top.youngwind.blog.entity.Article;
+import top.youngwind.blog.entity.Category;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ArticleService {
+public interface CategoryService {
     /**
      * 新增
      */
-    Article add(Article article);
+    Category add(Category category);
 
     /**
      * 修改
      */
-    Article save(Article article);
+    Category save(Category category);
 
     /**
      * 根据Id删除
@@ -24,10 +24,10 @@ public interface ArticleService {
     /**
      * 根据Id查询
      */
-    Optional<Article> findById(Integer id);
+    Optional<Category> findById(Integer id);
 
     /**
      * 查询全部
      */
-    List<Article> findAll();
+    List<Category> findAll();
 }

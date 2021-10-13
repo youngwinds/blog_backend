@@ -13,17 +13,13 @@ import java.util.Date;
 @Setter
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class Article {
+public class FriendLink {
     @Override
     public String toString() {
-        return "Article{" +
+        return "FriendLink{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", content='" + content + '\'' +
-                ", coverUrl='" + coverUrl + '\'' +
-                ", coverInfo='" + coverInfo + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';
@@ -31,22 +27,13 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id; // Id
+    private Integer id;
 
-    private String title; // 标题
-    private String author; // 作者
-    private String introduce; // 介绍
-    private String content; // 内容
-    private String coverUrl; // 封面 url
-    private String coverInfo; // 封面 说明
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    private String name; // 友情链接名称
+    private String url; // 友情链接地址
 
     @CreatedDate
     private Date createAt;
     @LastModifiedDate
     private Date updateAt;
-
 }

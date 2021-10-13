@@ -1,20 +1,20 @@
 package top.youngwind.blog.service;
 
-import top.youngwind.blog.entity.Article;
+import top.youngwind.blog.entity.FriendLink;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ArticleService {
+public interface FriendLinkService {
     /**
      * 新增
      */
-    Article add(Article article);
+    FriendLink add(FriendLink friendLink);
 
     /**
      * 修改
      */
-    Article save(Article article);
+    FriendLink save(FriendLink friendLink);
 
     /**
      * 根据Id删除
@@ -24,10 +24,10 @@ public interface ArticleService {
     /**
      * 根据Id查询
      */
-    Optional<Article> findById(Integer id);
+    Optional<FriendLink> findById(Integer id);
 
     /**
      * 查询全部
      */
-    List<Article> findAll();
+    List<FriendLink> findAll();
 }
