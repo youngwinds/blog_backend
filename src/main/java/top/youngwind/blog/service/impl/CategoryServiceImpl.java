@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.youngwind.blog.dao.ArticleDao;
 import top.youngwind.blog.dao.CategoryDao;
+import top.youngwind.blog.entity.Article;
 import top.youngwind.blog.entity.Category;
 import top.youngwind.blog.service.CategoryService;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,5 +1,6 @@
 package top.youngwind.blog.service;
 
+import top.youngwind.blog.entity.Article;
 import top.youngwind.blog.entity.Category;
 
 import java.util.List;

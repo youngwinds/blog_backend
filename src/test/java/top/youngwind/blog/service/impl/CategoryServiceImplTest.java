@@ -55,4 +55,5 @@ class CategoryServiceImplTest {
     void findAll() {
         System.out.println(categoryService.findAll());
     }
+
 }

@@ -1,13 +1,13 @@
 package top.youngwind.blog.controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.models.auth.In;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.youngwind.blog.entity.Article;
 import top.youngwind.blog.enums.ResultVOEnum;
 import top.youngwind.blog.service.ArticleService;
+import top.youngwind.blog.service.CategoryService;
 import top.youngwind.blog.vo.ResultVO;
 
 import java.util.List;
@@ -50,9 +50,14 @@ public class ArticleController {
 
     @Operation(summary = "添加")
     @PostMapping("/add")
-    public ResultVO<Article> add(@RequestBody Article article) {
-        return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.add(article));
+    public ResultVO<Article> add(@RequestBody Article article, @RequestParam(value = "categoryId", required = false) Integer categoryId) {
 
+        return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.add(article, categoryId));
     }
 
+    @Operation(summary = "根据分类Id查询其下的所有文章")
+    @GetMapping("/category/{categoryId}")
+    public ResultVO<List<Article>> findCategoryId(@PathVariable("categoryId") Integer categoryId) {
+        return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.findAllByCategoryId(categoryId));
+    }
 }

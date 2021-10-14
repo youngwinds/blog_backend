@@ -26,8 +26,6 @@ class ArticleServiceImplTest {
     @Transactional
     @Rollback(value = false)
     void add() {
-        Category category = categoryService.findById(12).orElse(null);
-
 
         for (int i = 0; i < 10; i++) {
             Article article = new Article();
@@ -37,8 +35,7 @@ class ArticleServiceImplTest {
             article.setCoverUrl("coverUrl" + i);
             article.setIntroduce("introduce" + i);
             article.setTitle("title" + i);
-            article.setCategory(category);
-            articleService.add(article);
+            articleService.add(article,12);
         }
     }
 
@@ -70,5 +67,12 @@ class ArticleServiceImplTest {
     @Test
     void findAll() {
         System.out.println(articleService.findAll());
+    }
+
+
+    @Test
+    @Transactional
+    void findAllArticlesByCategoryId(){
+        System.out.println(articleService.findAllByCategoryId(12));
     }
 }

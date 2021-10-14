@@ -12,6 +12,11 @@ public interface ArticleService {
     Article add(Article article);
 
     /**
+     * 新增文章并且设置分裂
+     */
+    Article add(Article article,Integer categoryId);
+
+    /**
      * 修改
      */
     Article save(Article article);
@@ -30,4 +35,9 @@ public interface ArticleService {
      * 查询全部
      */
     List<Article> findAll();
+
+    /**
+     * 根据文章Id查询分类
+     */
+    List<Article> findAllByCategoryId(Integer categoryId);
 }
