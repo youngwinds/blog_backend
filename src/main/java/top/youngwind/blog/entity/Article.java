@@ -43,7 +43,7 @@ public class Article {
     private String coverUrl;
     private String coverInfo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "category_id")
     private Category category;
 
