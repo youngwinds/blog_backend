@@ -39,6 +39,9 @@ public class Article {
     private String title;
     private String author;
     private String introduce;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition = "text")
     private String content;
     private String coverUrl;
     private String coverInfo;
