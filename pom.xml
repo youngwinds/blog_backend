@@ -12,6 +12,7 @@
 	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blog</name>
+	<packaging>war</packaging>
 	<description>a blog backend</description>
 	<properties>
 		<java.version>11</java.version>
@@ -50,9 +51,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- 排除内置tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>LATEST</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>blog</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
