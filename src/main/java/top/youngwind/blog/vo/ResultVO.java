@@ -25,4 +25,19 @@ public class ResultVO<T> {
         this.setCode(resultVOEnum.getCode());
         this.setData(data);
     }
+
+    public ResultVO<T> setMessage(String message) {
+        this.message = message;
+        return this;
+    }
+
+    public ResultVO<T> setCode(Integer code) {
+        this.code = code;
+        return this;
+    }
+
+    public ResultVO<T> setData(T data) {
+        this.data = data;
+        return this;
+    }
 }

@@ -31,7 +31,7 @@ public class Swagger3Config {
         return new ApiInfoBuilder()
                 .title("Swagger3接口文档")
                 .description("blog")
-                .contact(new Contact("YoungWind", "https://www.youngwind.top/", "youngwind.top@qq.com"))
+                .contact(new Contact("YoungWind", "https://www.youngwind.top/blog", "youngwind.top@qq.com"))
                 .version("1.0")
                 .build();
     }

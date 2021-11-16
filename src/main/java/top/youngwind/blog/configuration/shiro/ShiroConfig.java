@@ -58,11 +58,7 @@ public class ShiroConfig {
 
 
         // 需要认证
-        //        map.put("/admin/**", "authc");
-        //        map.put("/data_processing/**", "authc");
-        //        map.put("/data_management/**", "authc");
-        //        map.put("/knowledge_graph/**", "authc");
-        //        map.put("/visibility_analysis/**", "authc");
+        map.put("/admin/**", "authc");
 
         // 无需认证
         map.put("/**", "anon");

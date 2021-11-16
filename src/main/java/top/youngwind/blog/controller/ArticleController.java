@@ -2,12 +2,12 @@ package top.youngwind.blog.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.youngwind.blog.entity.Article;
 import top.youngwind.blog.enums.ResultVOEnum;
 import top.youngwind.blog.service.ArticleService;
-import top.youngwind.blog.service.CategoryService;
 import top.youngwind.blog.vo.ResultVO;
 
 import java.util.List;
@@ -35,6 +35,7 @@ public class ArticleController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.findAll());
     }
 
+    @RequiresPermissions("删除")
     @Operation(summary = "删除")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> delete(@PathVariable("id") Integer id) {
@@ -42,12 +43,14 @@ public class ArticleController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, id);
     }
 
+    @RequiresPermissions("修改")
     @Operation(summary = "修改")
     @PutMapping("/modify")
     public ResultVO<Article> modify(@RequestBody Article article) {
         return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.save(article));
     }
 
+    @RequiresPermissions("添加")
     @Operation(summary = "添加")
     @PostMapping("/add")
     public ResultVO<Article> add(@RequestBody Article article, @RequestParam(value = "categoryId", required = false) Integer categoryId) {
