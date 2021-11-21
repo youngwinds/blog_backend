@@ -48,7 +48,6 @@ public class UserController {
                 .setMessage("查询成功");
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "通过Id删除用户")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> deleteUserById(@ApiParam("用户Id") @PathVariable("id") Integer id) {
@@ -59,19 +58,16 @@ public class UserController {
                 .setMessage("删除成功");
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加用户")
     @PostMapping("/add")
-    public ResultVO<UserEntity> addUser(@ApiParam("用户名称") @RequestParam("username") String username,
-                                        @ApiParam("用户密码") @RequestParam("password") String password) {
-        UserEntity userEntity = userService.add(username, password);
+    public ResultVO<UserEntity> addUser(@RequestBody UserEntity userEntity) {
+        UserEntity user = userService.add(userEntity.getUsername(), userEntity.getPassword());
         return new ResultVO<UserEntity>()
-                .setData(userEntity)
+                .setData(user)
                 .setCode(200)
                 .setMessage("添加成功");
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改用户信息")
     @PutMapping("/modify")
     public ResultVO<UserEntity> modifyUser(@ApiParam("用户对象") @RequestBody UserEntity userEntity) {
@@ -82,7 +78,6 @@ public class UserController {
                 .setMessage("修改成功");
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "为用户赋予角色的权限")
     @PutMapping("/grant")
     public ResultVO<UserEntity> authorizationForUser(@ApiParam("用户Id") @RequestParam("userId") Integer userId,
@@ -91,7 +86,6 @@ public class UserController {
         RoleEntity role = roleService.findById(roleId);
         user.setRole(role);
         UserEntity savedUser = userService.save(user);
-
 
         return new ResultVO<UserEntity>()
                 .setData(savedUser)

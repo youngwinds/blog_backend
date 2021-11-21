@@ -39,6 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(UserEntity userEntity) {
+        String newPassword = new Md5Hash(userEntity.getPassword(),"mshd",1024).toString();
+        userEntity.setPassword(newPassword);
         return userDao.save(userEntity);
     }
 

@@ -15,6 +15,7 @@ import java.util.List;
 @Api(tags = "友情链接")
 @RestController
 @RequestMapping("/friend_link")
+@CrossOrigin(origins = "*")
 public class FriendLinkController {
     private FriendLinkService friendLinkService;
 
@@ -35,7 +36,6 @@ public class FriendLinkController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, friendLinkService.findAll());
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "删除")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> delete(@PathVariable("id") Integer id) {
@@ -43,14 +43,12 @@ public class FriendLinkController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, id);
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改")
     @PutMapping("/modify")
     public ResultVO<FriendLink> delete(@RequestBody FriendLink friendLink) {
         return new ResultVO<>(ResultVOEnum.SUCCESS, friendLinkService.save(friendLink));
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加")
     @PostMapping("/add")
     public ResultVO<FriendLink> add(@RequestBody FriendLink friendLink) {

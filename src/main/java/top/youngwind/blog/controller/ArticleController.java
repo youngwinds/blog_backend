@@ -15,6 +15,7 @@ import java.util.List;
 @Api(tags = "博客文章")
 @RestController
 @RequestMapping("/article")
+@CrossOrigin(origins = "*")
 public class ArticleController {
     private ArticleService articleService;
 
@@ -35,7 +36,6 @@ public class ArticleController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.findAll());
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "删除")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> delete(@PathVariable("id") Integer id) {
@@ -43,18 +43,17 @@ public class ArticleController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, id);
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改")
     @PutMapping("/modify")
     public ResultVO<Article> modify(@RequestBody Article article) {
         return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.save(article));
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加")
     @PostMapping("/add")
     public ResultVO<Article> add(@RequestBody Article article, @RequestParam(value = "categoryId", required = false) Integer categoryId) {
-
+        System.out.println("categoryId"+categoryId);
+        System.out.println(article.toString());
         return new ResultVO<>(ResultVOEnum.SUCCESS, articleService.add(article, categoryId));
     }
 

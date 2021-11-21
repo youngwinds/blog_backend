@@ -18,6 +18,7 @@ import java.util.List;
 @Api(tags = "权限管理")
 @RestController
 @RequestMapping("/admin/permission")
+@CrossOrigin(origins = "*")
 public class PermissionController {
     private UserService userService;
     private RoleService roleService;
@@ -47,7 +48,6 @@ public class PermissionController {
                 .setMessage("查询成功");
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加权限")
     @PostMapping("/add")
     public ResultVO<PermissionEntity> addPermission(@ApiParam("权限名称") @RequestParam("name") String name) {
@@ -61,7 +61,6 @@ public class PermissionController {
                 .setMessage("新增成功");
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "删除权限")
     @DeleteMapping("/{id}")
     public ResultVO<String> deletePermission(@ApiParam("权限名称") @PathVariable("id") Integer id) {
@@ -73,7 +72,6 @@ public class PermissionController {
                 .setMessage("删除成功");
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改权限")
     @PutMapping("/modify")
     public ResultVO<String> deletePermission(@ApiParam("权限对象") @RequestBody PermissionEntity permissionEntity) {

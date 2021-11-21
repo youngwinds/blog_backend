@@ -21,6 +21,7 @@ import java.util.Set;
 @Api(tags = "角色管理")
 @RestController
 @RequestMapping("/admin/role")
+@CrossOrigin(origins = "*")
 public class RoleController {
     private UserService userService;
     private RoleService roleService;
@@ -74,7 +75,6 @@ public class RoleController {
                 .setData(users);
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加角色")
     @PostMapping("/add")
     public ResultVO<RoleEntity> addRole(@ApiParam("角色名称") @RequestParam("name") String name) {
@@ -87,7 +87,6 @@ public class RoleController {
                 .setData(savedRole);
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "通过Id删除角色")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> deleteRoleById(@ApiParam("角色Id") @PathVariable("id") Integer id) {
@@ -98,7 +97,6 @@ public class RoleController {
                 .setMessage("删除该角色成功，并且已删除对应的所有用户信息。");
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改角色信息")
     @PutMapping("/modify")
     public ResultVO<RoleEntity> modifyRole(@ApiParam("角色对象") @RequestBody RoleEntity roleEntity) {
@@ -109,7 +107,6 @@ public class RoleController {
                 .setMessage("修改成功");
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "为角色授权")
     @PutMapping("/grant")
     public ResultVO<RoleEntity> authorizationForRole(@ApiParam("角色Id") @RequestParam("roleId") Integer roleId,
@@ -118,7 +115,7 @@ public class RoleController {
 
         List<PermissionEntity> permissionsList = permissionService.findAllByIdIn(idsList);
 
-        HashSet<PermissionEntity> permissions = new HashSet<PermissionEntity>(permissionsList);
+        HashSet<PermissionEntity> permissions = new HashSet<>(permissionsList);
 
         role.setPermissions(permissions);
 

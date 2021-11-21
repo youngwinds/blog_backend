@@ -58,12 +58,12 @@ public class ShiroConfig {
 
 
         // 需要认证
-        map.put("/admin/**", "authc");
+//        map.put("/admin/**", "authc");
 
         // 无需认证
         map.put("/**", "anon");
-        map.put("/login", "anon");
-        map.put("/swagger-ui/**", "anon");
+//        map.put("/login", "anon");
+//        map.put("/swagger-ui/**", "anon");
 
         //登出认证
         map.put("/logout", "logout");

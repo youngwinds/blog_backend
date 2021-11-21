@@ -16,6 +16,7 @@ import java.util.List;
 @Api(tags = "博客分类")
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = "*")
 public class CategoryController {
     private CategoryService categoryService;
 
@@ -36,7 +37,6 @@ public class CategoryController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, categoryService.findAll());
     }
 
-    @RequiresPermissions("删除")
     @Operation(summary = "删除")
     @DeleteMapping("/{id}")
     public ResultVO<Integer> delete(@PathVariable("id") Integer id) {
@@ -44,14 +44,12 @@ public class CategoryController {
         return new ResultVO<>(ResultVOEnum.SUCCESS, id);
     }
 
-    @RequiresPermissions("修改")
     @Operation(summary = "修改")
     @PutMapping("/modify")
     public ResultVO<Category> modify(@RequestBody Category category) {
         return new ResultVO<>(ResultVOEnum.SUCCESS, categoryService.save(category));
     }
 
-    @RequiresPermissions("添加")
     @Operation(summary = "添加")
     @PostMapping("/add")
     public ResultVO<Category> add(@RequestBody Category category) {

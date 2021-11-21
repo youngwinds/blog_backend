@@ -1,5 +1,6 @@
 package top.youngwind.blog.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import top.youngwind.blog.entity.user.UserEntity;
 import top.youngwind.blog.service.user.UserService;
 import top.youngwind.blog.vo.ResultVO;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "登录")
 @RestController
+@CrossOrigin(origins = "*")
 public class LoginController {
 
     private UserService userService;
